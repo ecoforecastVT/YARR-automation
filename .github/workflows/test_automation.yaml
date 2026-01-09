@@ -3,7 +3,7 @@ on:
   #   - cron: '0 23 * * *'
   workflow_dispatch:
 
-name: catalog
+name: automation_test
 
 jobs:
   build_catalog:
