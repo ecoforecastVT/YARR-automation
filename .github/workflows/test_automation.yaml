@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'ecoforecastVT/YARR-forecast'
-          token: ${GH_PAT}
+          token: ${GITHUB_PAT}
           path: './YARR-forecast'
 
       # - name: clone lake repository
