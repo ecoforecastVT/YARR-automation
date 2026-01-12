@@ -23,7 +23,7 @@ jobs:
         with:
           repository: ecoforecastVT/YARR-forecast
           token: ${{ secrets.GIT_PAT }}
-          path: my-tools
+          path: YARR-forecast
 
 
       - name: Install
@@ -41,11 +41,11 @@ jobs:
           
       - name: Download Pseudo
         shell: Rscript {0}
-        run: source("drivers/download_psuedo.R")
+        run: source("YARR-forecast/drivers/download_psuedo.R")
 
       - name: Update Stage3
         shell: Rscript {0}
-        run: source("drivers/update_stage3.R")
+        run: source("YARR-forecast.drivers/update_stage3.R")
 
       #- name: Healthcheck
       #  run: curl -m 10 --retry 5 https://hc-ping.com/6c3dec04-631a-4a8e-8c55-8837f2827e07
