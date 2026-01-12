@@ -14,6 +14,8 @@ jobs:
       LAKE_REPO_GH_PAT: ${{ secrets.LAKE_REPO_ACCESS }}
       #OSN_KEY: ${{ secrets.OSN_KEY }}
       #OSN_SECRET: ${{ secrets.OSN_SECRET }}
+    permissions:
+     contents: write
     steps:
     
       - name: checkout source repository
