@@ -1,0 +1,41 @@
+on:
+  #schedule:
+  #  - cron: '0 23 * * *'
+  workflow_dispatch:
+
+name: gefs_osn_stage3
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest #self-hosted
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      OSN_KEY: ${{ secrets.OSN_KEY }}
+      OSN_SECRET: ${{ secrets.OSN_SECRET }}
+    container: rocker/geospatial:latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install
+        shell: Rscript {0}
+        run: |
+          install.packages("remotes")
+          remotes::install_github("eco4cast/gefs4cast")
+          remotes::install_github("cboettig/duckdbfs")
+          install.packages("minioclient")
+          install.packages("decor")
+          install.packages("imputeTS")
+          install.packages("future")
+          install.packages("furrr")
+          remotes::install_version("arrow", version = "20.0.0")
+          
+      - name: Download Pseudo
+        shell: Rscript {0}
+        run: source("drivers/download_psuedo.R")
+
+      - name: Update Stage3
+        shell: Rscript {0}
+        run: source("drivers/update_stage3.R")
+
+      #- name: Healthcheck
+      #  run: curl -m 10 --retry 5 https://hc-ping.com/6c3dec04-631a-4a8e-8c55-8837f2827e07
