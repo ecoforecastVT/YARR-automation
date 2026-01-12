@@ -1,13 +1,13 @@
 on:
-  #schedule:
-  #  - cron: '0 5 * * *'
+  schedule:
+    - cron: '0 5 * * *'
   workflow_dispatch:
 
 
 name: gefs_osn
 
 jobs:
-  docker:
+  download-data:
     runs-on: ubuntu-latest #[self-hosted]
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
