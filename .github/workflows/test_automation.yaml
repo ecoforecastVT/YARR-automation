@@ -34,7 +34,8 @@ jobs:
       #     path: './YARR-forecast'
 
       - name: clone lake repository
-        run: git clone depth --1 https://username:${LAKE_REPO_GH_PAT}@github.com/ecoforecastVT/YARR-forecast.git ../YARR-forecast
+        run: |
+          git clone --depth 1 https://username:${LAKE_REPO_GH_PAT}@github.com/ecoforecastVT/YARR-forecast.git ../YARR-forecast
 
 
       - name: Make small file
