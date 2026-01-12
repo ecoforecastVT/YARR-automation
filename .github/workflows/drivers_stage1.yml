@@ -1,0 +1,48 @@
+on:
+  #schedule:
+  #  - cron: '0 5 * * *'
+  workflow_dispatch:
+
+
+name: gefs_osn
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest #[self-hosted]
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      OSN_KEY: ${{ secrets.OSN_KEY }}
+      OSN_SECRET: ${{ secrets.OSN_SECRET }}
+    permissions:
+     contents: write
+    container: rocker/geospatial:latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: clone lake repository
+        uses: actions/checkout@v6
+        with:
+          repository: ecoforecastVT/YARR-forecast
+          token: ${{ secrets.GIT_PAT }}
+          path: forecast-code
+
+      - name: Install
+        shell: Rscript {0}
+        run: |
+          install.packages("remotes")
+          remotes::install_github("eco4cast/gefs4cast")
+          install.packages("decor")
+          install.packages("imputeTS")
+          remotes::install_version("arrow", version = "20.0.0")
+          #install.packages("arrow", version = "20.0.0")
+
+      - name: Download stage 1
+        shell: Rscript {0}
+        run: source("forecast-code/drivers/download_stage1.R")
+
+      - name: Generate stage 2
+        shell: Rscript {0}
+        run: source("forecast-code/drivers/generate_stage2.R")
+
+      #- name: Healthcheck
+      #  run: curl -m 10 --retry 5 https://hc-ping.com/3c7408aa-070a-4985-a856-356606a297b7
