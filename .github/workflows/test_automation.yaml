@@ -17,17 +17,17 @@ jobs:
     steps:
     
       - name: checkout source repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
            fetch-depth: 0
            set-safe-directory: '*'
 
       - name: clone lake repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
-          repository: 'ecoforecastVT/YARR-forecast'
+          repository: ecoforecastVT/YARR-forecast
           token: ${{ secrets.GIT_PAT }}
-          path: './YARR-forecast'
+          path: my-tools
 
       # - name: clone lake repository
       #   run: |
