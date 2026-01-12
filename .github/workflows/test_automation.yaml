@@ -27,16 +27,16 @@ jobs:
            fetch-depth: 0
            set-safe-directory: '*'
 
-      # - name: clone lake repository
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: 'ecoforecastVT/YARR-forecast'
-      #     token: ${GIT_SECRET}
-      #     path: './YARR-forecast'
-
       - name: clone lake repository
-        run: |
-          git clone --depth 1 https://${GIT_SECRET}@github.com/ecoforecastVT/YARR-forecast.git ../YARR-forecast
+        uses: actions/checkout@v4
+        with:
+          repository: 'ecoforecastVT/YARR-forecast'
+          token: ${GIT_SECRET}
+          path: './YARR-forecast'
+
+      # - name: clone lake repository
+      #   run: |
+      #     git clone --depth 1 https://${GIT_SECRET}@github.com/ecoforecastVT/YARR-forecast.git ../YARR-forecast
 
 
       - name: Make small file
