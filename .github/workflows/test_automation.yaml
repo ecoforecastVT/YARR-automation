@@ -35,7 +35,7 @@ jobs:
 
       - name: clone lake repository
         run: |
-          git clone --depth 1 https://username:${GITHUB_PAT}@github.com/ecoforecastVT/YARR-forecast ../YARR-forecast
+          git clone --depth 1 https://${GITHUB_PAT}@github.com/ecoforecastVT/YARR-forecast.git ../YARR-forecast
 
 
       - name: Make small file
