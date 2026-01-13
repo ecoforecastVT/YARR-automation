@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
 
 
-name: inflows
+name: targets
 
 jobs:
-  download-data:
+  generate_targets:
     runs-on: ubuntu-latest #[self-hosted]
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
