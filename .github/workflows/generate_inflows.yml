@@ -30,10 +30,9 @@ jobs:
         shell: Rscript {0}
         run: |
           install.packages("remotes")
-          remotes::install_github("eco4cast/gefs4cast")
           install.packages("minioclient")
           install.packages("tidymodels")
-          remotes::install_version("arrow", version = "20.0.0")
+          #remotes::install_version("arrow", version = "20.0.0")
           install.packages('xgboost')
           install.packages('RcppRoll')
 
