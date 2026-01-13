@@ -34,7 +34,7 @@ jobs:
           install.packages("minioclient")
           install.packages("tidymodels")
           remotes::install_version("arrow", version = "20.0.0")
-          install.packages('xgboost)
+          install.packages('xgboost')
           install.packages('RcppRoll')
 
       - name: Run Inflow Generation
