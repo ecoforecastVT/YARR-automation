@@ -34,6 +34,7 @@ jobs:
           remotes::install_version("arrow", version = "20.0.0")
           install.packages('RcppRoll')
           install.packages('RCurl')
+          install.packages('here')
 
       - name: Run Inflow Generation
         shell: Rscript {0}
