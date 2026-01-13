@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest #[self-hosted]
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      OSN_KEY: ${{ secrets.MW_ACCESS_KEY_ID }}
-      OSN_SECRET: ${{ secrets.MW_ACCESS_SECRET }}
+      MW_ACCESS_KEY_ID: ${{ secrets.MW_ACCESS_KEY_ID }}
+      MW_ACCESS_SECRET: ${{ secrets.MW_ACCESS_SECRET }}
     permissions:
      contents: write
     container: rqthomas/flare-rocker:4.4
