@@ -15,7 +15,7 @@ jobs:
       OSN_SECRET: ${{ secrets.MW_ACCESS_SECRET }}
     permissions:
      contents: write
-    container: rocker/geospatial:latest
+    container: rqthomas/flare-rocker:4.4
     steps:
       - uses: actions/checkout@v6
 
