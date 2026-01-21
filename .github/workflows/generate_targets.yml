@@ -31,7 +31,6 @@ jobs:
         run: |
           install.packages("remotes")
           install.packages("minioclient")
-          remotes::install_version("arrow", version = "20.0.0")
           install.packages('RcppRoll')
           install.packages('RCurl')
           install.packages('here')
