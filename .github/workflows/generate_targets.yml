@@ -13,6 +13,8 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       OSN_KEY: ${{ secrets.MW_ACCESS_KEY_ID }}
       OSN_SECRET: ${{ secrets.MW_ACCESS_SECRET }}
+      MW_FTP_USER: ${{ secrets.MW_FTP_USER }}
+      MW_FTP_URL: ${{ secrets.MW_FTP_URL }}
     permissions:
      contents: write
     container: rqthomas/flare-rocker:4.4
