@@ -38,6 +38,7 @@ jobs:
           install.packages('RcppRoll')
           install.packages('RCurl')
           install.packages('here')
+          install.packages('jsonlite')
 
       - name: Run Inflow Generation
         shell: Rscript {0}
