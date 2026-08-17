@@ -35,6 +35,7 @@ jobs:
           remotes::install_github('LTREB-reservoirs/ver4castHelpers')
           install.packages('rLakeAnalyzer')
           install.packages('minioclient')
+          install.packages('duckdbfs')
 
       - name: scoring-prep
         env:
