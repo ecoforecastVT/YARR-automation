@@ -37,6 +37,7 @@ jobs:
           install.packages('minioclient')
           install.packages('duckdbfs')
           install.packages('tidyverse')
+          install.packages('dplyr')
 
       #- name: scoring-prep
       #  env:
