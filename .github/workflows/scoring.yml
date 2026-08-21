@@ -36,6 +36,7 @@ jobs:
           install.packages('rLakeAnalyzer')
           install.packages('minioclient')
           install.packages('duckdbfs')
+          install.packages('tidyverse')
 
       #- name: scoring-prep
       #  env:
