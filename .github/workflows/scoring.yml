@@ -37,8 +37,8 @@ jobs:
           install.packages('minioclient')
           install.packages('duckdbfs')
           install.packages('tidyverse')
-          install.packages('dplyr')
-
+          remotes::install_cran("dplyr", force = TRUE)
+          
       #- name: scoring-prep
       #  env:
       #   AWS_ACCESS_KEY_ID: ${{ secrets.MW_ACCESS_KEY_ID }}
