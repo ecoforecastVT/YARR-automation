@@ -1,11 +1,17 @@
 on:
+  workflow_run:
+    workflows: ["scoring"]
+    types: [completed]
   workflow_dispatch:
-  schedule:
-    - cron: '0 16 * * *'  # Run daily at 2:00 UTC
+
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '0 16 * * *'  # Run daily at 2:00 UTC
 
 permissions:
   contents: write
-  
+
 name: dashboard
 
 jobs:
@@ -101,3 +107,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: forecast-code/dashboard/encrypted
           publish_branch: gh-pages
+
+      - name: Call Healthcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          curl -m 10 --retry 5 https://hc-ping.com/a9b24980-a616-44c0-95b2-a8e93047ec28

@@ -1,8 +1,9 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
-  schedule:
-    - cron: '0 15 * * *'
+  workflow_run:
+    workflows: ["glm_aed_flare_automation_test"]
+    types: [completed]
   workflow_dispatch:
 
 name: scoring
@@ -38,7 +39,7 @@ jobs:
           install.packages('duckdbfs')
           install.packages('tidyverse')
           remotes::install_cran("dplyr", force = TRUE)
-          
+
       #- name: scoring-prep
       #  env:
       #   AWS_ACCESS_KEY_ID: ${{ secrets.MW_ACCESS_KEY_ID }}
@@ -52,3 +53,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.MW_ACCESS_SECRET }}
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: Rscript $GITHUB_WORKSPACE/forecast-code/scoring/scoring.R
+
+      - name: Call Healthcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          curl -m 10 --retry 5 https://hc-ping.com/06e8b152-229a-43d6-8bea-21958e6f359f

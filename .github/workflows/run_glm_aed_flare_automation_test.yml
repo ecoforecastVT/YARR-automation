@@ -1,7 +1,13 @@
 on:
+  workflow_run:
+    workflows: ["gefs_osn_stage3"]
+    types: [completed]
   workflow_dispatch:
-  schedule:
-   - cron: "0 13 * * *"
+
+# on:
+#   workflow_dispatch:
+#   schedule:
+#    - cron: "0 13 * * *"
 
 name: glm_aed_flare_automation_test
 
@@ -44,3 +50,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.MW_ACCESS_SECRET }}
           GITHUB_PAT: ${{ secrets.GIT_TOKEN }}
         run:  Rscript $GITHUB_WORKSPACE/forecast-code/workflows/glm_aed_flare_automation_test/forecast_workflow_aed.R
+
+      - name: Call Healthcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          curl -m 10 --retry 5 https://hc-ping.com/a880a405-7e69-40cb-96f0-8f0e10eebc8c

@@ -52,5 +52,8 @@ jobs:
         shell: Rscript {0}
         run: source("forecast-code/drivers/generate_stage2.R")
 
-      #- name: Healthcheck
-      #  run: curl -m 10 --retry 5 https://hc-ping.com/3c7408aa-070a-4985-a856-356606a297b7
+      - name: Call Healthcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          curl -m 10 --retry 5 https://hc-ping.com/2419833c-0f7d-431b-ac9a-4e8c601b946b

@@ -1,6 +1,7 @@
 on:
-  schedule:
-    - cron: '0 23 * * *'
+  workflow_run:
+    workflows: ["gefs_osn"]
+    types: [completed]
   workflow_dispatch:
 
 name: gefs_osn_stage3
@@ -45,7 +46,7 @@ jobs:
           install.packages("future")
           install.packages("furrr")
           #remotes::install_version("arrow", version = "20.0.0")
-          
+
       - name: Download Pseudo
         shell: Rscript {0}
         run: source("forecast-code/drivers/download_psuedo.R")
@@ -54,5 +55,8 @@ jobs:
         shell: Rscript {0}
         run: source("forecast-code/drivers/update_stage3.R")
 
-      #- name: Healthcheck
-      #  run: curl -m 10 --retry 5 https://hc-ping.com/6c3dec04-631a-4a8e-8c55-8837f2827e07
+      - name: Call Healthcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          curl -m 10 --retry 5 https://hc-ping.com/4d04c0e6-f810-45ae-80d7-dec2f89d0617
